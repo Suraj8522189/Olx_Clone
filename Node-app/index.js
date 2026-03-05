@@ -53,16 +53,16 @@ app.get('/', (req, res) => {
 // search
 app.get('/search', productController.search);
 // Like-Products
-app.post('/like-product',userController.likeProducts)
+app.post('/like-product',userController.likeProducts);
 // disLisk-product
-app.post('/dislike-product',userController.dislikeProducts)
+app.post('/dislike-product',userController.dislikeProducts);
 app.post('/liked-products',userController.likedProducts );
 // My-Product
 app.post('/my-products', productController.MyProduct );
 // Add Product
-app.post('/add-products', upload.fields([ {name: 'pimage'}, {name: 'pimage2'} ]), productController.addProduct)
+app.post('/add-products', upload.fields([ {name: 'pimage'}, {name: 'pimage2'} ]), productController.addProduct);
 // Edit-product
-app.post('/edit-product', upload.fields([ {name: 'pimage'}, {name: 'pimage2'} ]), productController.editProduct)
+app.post('/edit-product', upload.fields([ {name: 'pimage'}, {name: 'pimage2'} ]), productController.editProduct);
 // Get Product
 app.get('/get-product', productController.getProducts);
 // Delete Product
@@ -70,13 +70,13 @@ app.post('/delete-product', productController.deleteProduct);
 // Product id
 app.get('/get-product/:pId', productController.getProductById );
 // Signup 
-app.post('/signup', userController.signup)
+app.post('/signup', userController.signup);
 // my-profile
-app.get('/my-profile/:userId', userController.myProfileById )
+app.get('/my-profile/:userId', userController.myProfileById );
 // Update user
-app.post('/update-user', userController.updateUser)
+app.post('/update-user', userController.updateUser);
 //  Get-User
-app.get('/get-user/:uId', userController.getUserById)
+app.get('/get-user/:uId', userController.getUserById);
 // Login
 app.post('/login', userController.login );
 
