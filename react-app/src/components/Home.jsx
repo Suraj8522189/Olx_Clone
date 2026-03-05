@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Header from "./Header";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import axios from "axios";
 import Cetegories from "./Cetegories"
 import { FaHeart } from "react-icons/fa";
@@ -86,11 +86,9 @@ console.log("API_URL:", API_URL);
     }
 
     const handleCategory = (value) => {
-        let filteredProducts = products.filter((item, index) => {
-            if (item.category == value) {
-                return item;
-            }
-        })
+      let filteredProducts = products.filter((item, index) => {
+    return item.category === value;
+    });
         setcproducts(filteredProducts)
     }
 
@@ -158,7 +156,7 @@ console.log("API_URL:", API_URL);
                     <button className="clear-btn" onClick={() => setissearch(false)}> CLEAR </button>
                 </h5>}
 
-            {issearch && cproducts && cproducts.length == 0 && <h5> No Results Found </h5>}
+            {issearch && cproducts && cproducts.length === 0 && <h5> No Results Found </h5>}
             {issearch && <div className="d-flex justify-content-center flex-wrap">
                 {cproducts && products.length > 0 &&
                     cproducts.map((item, index) => {
@@ -168,7 +166,7 @@ console.log("API_URL:", API_URL);
                                 <div onClick={() => handleLike(item._id)} className="icon-con">
                                   
                                 </div>
-                                <img width="300px" height="200px" src={ API_URL +'/' + item.pimage} />
+                                <img width="300px" height="200px" src={ API_URL +'/' + item.pimage} alt="" />
 
                                 <p className="m-2"> {item.pname}  | {item.category} </p>
                                 <h3 className="m-2 text-danger"> {item.price} </h3>

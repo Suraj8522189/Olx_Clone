@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Header from "./Header";
 import API_URL from './constants';
@@ -35,7 +35,7 @@ function ProductDetail() {
         socket.on('getMsg', (data) => {
 
             const _data = data.filter((item, index) => {
-                return item.productId == p.productId
+                return item.productId === p.productId
             })
             console.log(_data, "_data")
             setmsgs(_data)
@@ -67,7 +67,7 @@ function ProductDetail() {
             .catch((err) => {
                 alert('Server Err.')
             })
-    }, [])
+    }, [p.productId])
 
 
     const handleContact = (addedBy) => {
@@ -152,9 +152,9 @@ function ProductDetail() {
                 }}
               >
                 {msgs &&
-                  msgs.map((item) => (
+                  msgs.map((item,index) => (
                     <div
-                      key={item._id}
+                      key={item._id || index}
                       className={`d-flex mb-2 ${
                         item.username === localStorage.getItem("userName")
                           ? "justify-content-end"

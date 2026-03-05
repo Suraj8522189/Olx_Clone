@@ -5,8 +5,6 @@ import {createRoot} from 'react-dom/client';
 import{
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Link,
 } from "react-router-dom";
 import Home from './components/Home';
 import Login from './components/Login';
@@ -27,10 +25,6 @@ const router = createBrowserRouter([
   {
     path: "/category/:catName",
     element: ( <CategoryPage/>   ),
-  },
-  {
-    path: "about",
-    element: <div>About</div>,
   },
   {
     path: "/login",

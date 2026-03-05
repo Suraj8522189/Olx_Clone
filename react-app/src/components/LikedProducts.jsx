@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Header from "./Header";
-import { useNavigate, Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cetegories from "./Cetegories";
 import { FaHeart } from "react-icons/fa";
@@ -10,7 +10,7 @@ import API_URL from "./constants";
 
 function LikedProducts() {
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const [products, setproducts] = useState([]);
     const [cproducts, setcproducts] = useState([]);
@@ -41,23 +41,21 @@ function LikedProducts() {
     }
 
     const handleClick = () => {
-        let filteredProducts = products.filter((item) => {
-            if (item.pname.toLowerCase().includes(search.toLowerCase()) ||
-                item.pdesc.toLowerCase().includes(search.toLowerCase()) ||
-                item.category.toLowerCase().includes(search.toLowerCase())) {
-                return item;
-            }
-        })
+     let filteredProducts = products.filter((item) => {
+    return (
+        item.pname.toLowerCase().includes(search.toLowerCase()) ||
+        item.pdesc.toLowerCase().includes(search.toLowerCase()) ||
+        item.category.toLowerCase().includes(search.toLowerCase())
+    );
+    });
         setcproducts(filteredProducts)
 
     }
 
     const handleCategory = (value) => {
-        let filteredProducts = products.filter((item, index) => {
-            if (item.category == value) {
-                return item;
-            }
-        })
+      let filteredProducts = products.filter((item, index) => {
+    return item.category === value;
+     });
         setcproducts(filteredProducts)
     }
 
@@ -93,7 +91,7 @@ function LikedProducts() {
                                 <div onClick={() => handleLike(item._id)} className="icon-con">
                                     <FaHeart className="icons" />
                                 </div>
-                                <img width="300px" height="200px" src={API_URL + '/' + item.pimage} />
+                                <img width="300px" height="200px" src={API_URL + '/' + item.pimage} alt="" />
 
                                 <p className="m-2"> {item.pname}  | {item.category} </p>
                                 <h3 className="m-2 text-danger"> {item.price} </h3>
@@ -115,7 +113,7 @@ function LikedProducts() {
                                 <div onClick={() => handleLike(item._id)} className="icon-con">
                                     <FaHeart className="red-icons" />
                                 </div>
-                                <img width="300px" height="200px" src={API_URL + '/' + item.pimage} />
+                                <img width="300px" height="200px" src={API_URL + '/' + item.pimage} alt="" />
                                 <p className="m-2"> {item.pname}  | {item.category} </p>
                                 <h3 className="m-2 text-danger">₹  {item.price} </h3>
                                 <p className="m-2 text-success"> {item.pdesc} </p>

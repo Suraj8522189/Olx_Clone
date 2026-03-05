@@ -20,7 +20,7 @@ function AddProduct() {
         if (!localStorage.getItem('token')) {
             navigate('/login')
         }
-    }, [])
+    }, [navigate])
 
     const handleApi = () => {
 

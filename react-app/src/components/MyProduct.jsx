@@ -45,22 +45,20 @@ export default function MyProducts() {
     }
      const handleclick = () => {
      setsearch('products' ,products);
-     let filteredProducts = products.filter((item)=>{
-        if(item.pname.toLowerCase().includes(search.toLowerCase()) ||
+ let filteredProducts = products.filter((item) => {
+    return (
+        item.pname.toLowerCase().includes(search.toLowerCase()) ||
         item.pdesc.toLowerCase().includes(search.toLowerCase()) ||
-        item.category.toLowerCase().includes(search.toLowerCase())){
-          return item;
-        }
-     })
+        item.category.toLowerCase().includes(search.toLowerCase())
+    );
+});
      setcproducts(filteredProducts)
     }
 
     const handleCategory =(value) => {
-        let filteredProducts = products.filter((item,index)=>{
-        if(item.category == value){
-          return item;
-        }
-     })
+    let filteredProducts = products.filter((item, index) => {
+    return item.category === value;
+    });
      setcproducts(filteredProducts)
     }
 
@@ -118,7 +116,7 @@ export default function MyProducts() {
                  <div onClick={() => handleLike(item._id)} className='icon-con'> 
                 <FaHeart className='icons' />
               </div>
-            <img width="300px" height="200px"  src={ API_URL +'/' + item.pimage}></img>
+            <img width="300px" alt='' height="200px"  src={ API_URL +'/' + item.pimage}></img>
             <p className="m-2" >{item.pname} | {item.category}</p>
             <h3 className="m-2 text-danger">{item.price}</h3>
             <p className="m-2 text-success"> {item.pdesc} </p>
@@ -140,7 +138,7 @@ export default function MyProducts() {
               <div onClick={() => handleLike(item._id)} className='icon-con'> 
                 <FaHeart className='icons' />
               </div>
-            <img width="300px" height="200px"  src={ API_URL +'/' + item.pimage}></img>
+            <img width="300px" height="200px"  src={ API_URL +'/' + item.pimage} alt='' ></img>
             <p className="m-2" >{item.pname} | {item.category}</p>
             <h3 className="m-2 text-danger">₹ {item.price}</h3>
             <p className="m-2 text-success"> {item.pdesc} </p>

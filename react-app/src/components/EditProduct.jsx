@@ -22,7 +22,7 @@ function EditProduct() {
         if (!localStorage.getItem('token')) {
             navigate('/login')
         }
-    }, [])
+    }, [navigate])
 
     useEffect(()=>{
     const url = API_URL +'/get-product/' + p.productId;
@@ -43,7 +43,7 @@ function EditProduct() {
     .catch((err)=>{
       alert('server err',err)
     })
-    },[])
+    },[p.productId])
 
     const handleApi = () => {
 
@@ -113,14 +113,14 @@ function EditProduct() {
                     onChange={(e) => {
                         setpimage(e.target.files[0])
                     }} />
-                    <img src={API_URL + '/' + oldpimage} width={100} height={50} /><br></br>
+                    <img src={API_URL + '/' + oldpimage} width={100} height={50} alt="" /><br></br>
 
                 <label> Product Second Image </label>
-                <input style={{ width: "50%" }} className="form-control" type="file"
+                <input style={{ width: "50%" }} className="form-control" type="file" alt=""
                     onChange={(e) => {
                         setpimage2(e.target.files[0])
                     }} />
-                    <img src={API_URL + '/' + oldpimage2} width={100} height={50} /><br></br>
+                    <img src={API_URL + '/' + oldpimage2} width={100} height={50} alt="" /><br></br>
                 <button onClick={handleApi} className="btn btn-primary mt-3"> SUBMIT </button>
             </div>
 

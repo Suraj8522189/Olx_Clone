@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Header from './Header'
-import { Link ,useNavigate, useParams} from 'react-router-dom'
+import { useNavigate, useParams} from 'react-router-dom'
 import axios from 'axios'
 import Cetegories from './Cetegories';
 import { FaHeart } from "react-icons/fa";
@@ -82,11 +82,9 @@ export default function CategoryPage() {
     }
 
     const handleCategory =(value) => {
-        let filteredProducts = products.filter((item,index)=>{
-        if(item.category == value){
-          return item;
-        }
-     })
+    let filteredProducts = products.filter((item, index) => {
+    return item.category === value;
+    });
      setcproducts(filteredProducts)
     }
 
@@ -219,7 +217,7 @@ export default function CategoryPage() {
 
                     <div className="position-absolute top-0 end-0 m-2">
                       {
-                        likedproducts.find((likedItem) => likedItem._id == item._id) ?
+                        likedproducts.find((likedItem) => likedItem._id === item._id) ?
                           <FaHeart
                             onClick={(e) => handleDisLike(item._id, e)}
                             className="text-danger"
