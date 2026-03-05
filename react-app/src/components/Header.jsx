@@ -16,10 +16,12 @@ function Header(props) {
   }
 
   const locations = [
-    { latitude: 28.6139, longitude: 77.2090, placeName: "New Delhi, Delhi" },
-    { latitude: 19.0760, longitude: 72.8777, placeName: "Mumbai, Maharashtra" },
-    { latitude: 30.1290, longitude: 77.2674, placeName: "Yamunanagar, Haryana" },
-  ]
+  { latitude: 28.6139, longitude: 77.2090, placeName: "New Delhi, Delhi" },
+  { latitude: 19.0760, longitude: 72.8777, placeName: "Mumbai, Maharashtra" },
+  { latitude: 30.1290, longitude: 77.2674, placeName: "Yamunanagar, Haryana" },
+  { latitude: 30.7333, longitude: 76.7794, placeName: "Chandigarh, Chandigarh" },
+  { latitude: 28.4595, longitude: 77.0266, placeName: "Gurugram, Haryana" }
+];
 
   return (
     <div className="header-container d-flex justify-content-between">

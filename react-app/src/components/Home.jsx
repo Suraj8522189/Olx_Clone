@@ -9,8 +9,7 @@ import API_URL from "./constants";
 
 
 function Home() {
-    console.log("NODE_ENV:", process.env.NODE_ENV);
-console.log("API_URL:", API_URL);
+    
 
     const navigate = useNavigate()
 
@@ -28,19 +27,27 @@ console.log("API_URL:", API_URL);
     // }, [])
 
     useEffect(() => {
-        const url = API_URL +'/get-product';
-        axios.get(url)
-            .then((res) => {
-                if (res.data.products) {
-                    setproducts(res.data.products);
-                }
-            })
-            .catch((err) => {
-                alert('Server Err.')
-            })
 
-       const url2 = API_URL + '/liked-products';
-        let data = { userId: localStorage.getItem('userId') }
+    const url = API_URL + '/get-product';
+
+    axios.get(url)
+        .then((res) => {
+            if (res.data.products) {
+                setproducts(res.data.products);
+            }
+        })
+        .catch((err) => {
+            alert('Server Err.')
+        })
+
+
+    // liked products API
+    const userId = localStorage.getItem('userId');
+
+    if (userId) {
+
+        const url2 = API_URL + '/liked-products';
+        const data = { userId };
 
         axios.post(url2, data)
             .then((res) => {
@@ -49,9 +56,12 @@ console.log("API_URL:", API_URL);
                 }
             })
             .catch((err) => {
-                alert('Server Err.')
+                console.log('Liked product error');
             })
-    }, [refresh])
+
+    }
+
+}, [refresh])
 
     const handlesearch = (value) => {
         setsearch(value);
