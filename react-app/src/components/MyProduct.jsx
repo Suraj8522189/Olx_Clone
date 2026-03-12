@@ -79,26 +79,36 @@ export default function MyProducts() {
     }
 
 
-    const handleDel = (pid)=>{
-      if(!localStorage.getItem('userId')){
-        alert('please login First')
-        return;
-      }
-      const url = API_URL + '/delete-product';
-      const data ={
-        pid,
-        userId : localStorage.getItem('userId')
-      }
-      axios.post(url, data)
-      .then((res) =>{
-        if(res.data.message){
-          alert('Delete Sucess')
-          setrefresh(!refresh)
-        }
-      }).catch((err) => {
-        alert('server Err')
-      })
+    const handleDel = (pid) => {
+
+  if(!localStorage.getItem('userId')){
+    alert('Please login first');
+    return;
+  }
+
+  const confirmDelete = window.confirm("Are you sure you want to delete this product?");
+
+  if(!confirmDelete){
+    return; 
+  }
+
+  const url = API_URL + '/delete-product';
+  const data = {
+    pid,
+    userId: localStorage.getItem('userId')
+  };
+
+  axios.post(url, data)
+  .then((res) => {
+    if(res.data.message){
+      alert('Delete Success');
+      setrefresh(!refresh);
     }
+  })
+  .catch((err) => {
+    alert('Server Error');
+  });
+}
 
   return (
     <div>
